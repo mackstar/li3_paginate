@@ -137,7 +137,8 @@ class Paginator extends \lithium\template\Helper {
 			'closeTag' => "</li>",
 			'library' => null,
 			'controller' => "",
-			'action' => ""
+			'action' => "",
+            'maxNumbers' => 10
 
 		);
 		parent::__construct($config + $defaults);
@@ -287,13 +288,27 @@ class Paginator extends \lithium\template\Helper {
 		if (!empty($options)) {
 			$this->config($options);
 		}
-		$start = ($this->_page - 4);
+        $maxNumbers = $this->_config['maxNumbers'];
+        $addOne = false;
+        if( ( $maxNumbers % 2 ) > 0) {
+            $addOne = true;
+            $maxNumbers--;
+        }
+
+        $minNumbersBefore = $maxNumbers/2;
+        $maxNumbersAfter = $minNumbersBefore;
+
+        if($addOne) {
+            $maxNumbers++;
+        }
+
+		$start = ($this->_page - $minNumbersBefore);
 		$end = ceil($this->_total / $this->_limit);
-		if ($this->_page <= 4) {
+		if ($this->_page <= $minNumbersBefore) {
 			$start = 1;
 		}
-		if (($this->_page + 4) < $end) {
-			$end = ($this->_page + 4);
+		if (($this->_page + $maxNumbersAfter) < $end) {
+			$end = ($this->_page + $maxNumbersAfter);
 		}
 		$buffer = "";
 		
@@ -301,7 +316,7 @@ class Paginator extends \lithium\template\Helper {
 			'controller' => $this->_controller,
 			'action' => $this->_action
 		);
-		
+		true;
 		if(!empty($this->_library)) {
 			$url['library'] = $this->_library;
 		}
