@@ -187,7 +187,7 @@ class Paginator extends \lithium\template\Helper {
 				$url['library'] = $this->_library;
 			}
 
-			return $this->_config['openTag'].$this->_context->html->link($this->_config['firstText'], $url).$this->_config['closeTag'];
+			return $this->_config['openTag'].$this->_context->html->link($this->_config['firstText'], $url, ['escape' => false]).$this->_config['closeTag'];
 		}
 		return $this->_config['firstTextDisabled'];
 	}
@@ -215,7 +215,7 @@ class Paginator extends \lithium\template\Helper {
 				$url['library'] = $this->_library;
 			}
 
-			return $this->_config['openTag'].$this->_context->html->link($this->_config['prevText'], $url).$this->_config['closeTag'];
+			return $this->_config['openTag'].$this->_context->html->link($this->_config['prevText'], $url, ['escape' => false]).$this->_config['closeTag'];
 		}
 		return $this->_config['prevTextDisabled'];
 	}
@@ -243,7 +243,7 @@ class Paginator extends \lithium\template\Helper {
 				$url['library'] = $this->_library;
 			}
 
-			return $this->_config['openTag'].$this->_context->html->link($this->_config['nextText'], $url).$this->_config['closeTag'];
+			return $this->_config['openTag'].$this->_context->html->link($this->_config['nextText'], $url, ['escape' => false]).$this->_config['closeTag'];
 		}
 		return $this->_config['nextTextDisabled'];
 	}
@@ -272,7 +272,7 @@ class Paginator extends \lithium\template\Helper {
 				$url['library'] = $this->_library;
 			}
 
-			return $this->_config['openTag'].$this->_context->html->link($this->_config['lastText'], $url).$this->_config['closeTag'];
+			return $this->_config['openTag'].$this->_context->html->link($this->_config['lastText'], $url, ['escape' => false]).$this->_config['closeTag'];
 		}
 		return $this->_config['lastTextDisabled'];
 	}
